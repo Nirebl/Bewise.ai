@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  backend:
+    container_name: bewise_ai_backend
+    build: Backend
+    restart: always
+    environment:
+      DBS_USER: ${DBS_USER}
+      DBS_PASS: ${DBS_PASS}
+
+      DBS_URL: ${DBS_URL}
+    depends_on:
+      - dbs
+    ports:
+      - "8000:8000"
+
+  dbs:
+    container_name: bewise_ai_dbs
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DBS_USER}
+      POSTGRES_PASSWORD: ${DBS_PASS}
+      POSTGRES_DB: "bewise_ai"
+    ports:
+      - 5442:5432
+    volumes:
+      - ./postgresql_data/:/var/lib/postgresql/data
