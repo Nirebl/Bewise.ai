@@ -1,12 +1,12 @@
 import typing
 
-from fastapi import FastAPI
+from fastapi import APIRouter
 
 from dto import QuestionRequest, QuestionInputDTO, QuestionOutDTO
 from models.question import QuestionDBModerator
 from utils import JserviceAPI
 
-questions_app = FastAPI(title="questions module")
+questions_app = APIRouter(prefix="/questions")
 
 
 @questions_app.post("/")

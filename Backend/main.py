@@ -4,4 +4,4 @@ from endpoints import questions_app
 
 app = FastAPI(title="Bewise.ai test solution")
 
-app.mount(app=questions_app, path="/questions")
+app.include_router(questions_app)
